@@ -1,0 +1,7 @@
+nav {
+    background: linear-gradient(#020202, #112942) !important;
+  }
+  
+  .navbar-collapse {
+      justify-content:end!important;
+  }
