@@ -10,6 +10,6 @@ import com.nazzareno.it.model.User;
 public interface UserService {
     UserDTO signUp(UserSignupDTO userSignupDTO);
     UserDTO signIn(UserLoginDTO userLoginDTO);
-    UserDTO findById(Long id);
+    User findById(Long id);
 	User getUserByEmail(String email);
 }

@@ -16,13 +16,13 @@ export class AuthService {
   url = "http://localhost:8080/api/";
 
   signin(utenteLogin: LoginDto) {
-    return this.http.post(this.url + "auth/login", utenteLogin).pipe(
+    return this.http.post(this.url + "auth/signin", utenteLogin).pipe(
       catchError(this.handleError)
     )
   }
 
   signup(utenteSignup: UtenteRegistrationDto) {
-    return this.http.post(this.url + "auth/register", utenteSignup).pipe(
+    return this.http.post(this.url + "auth/signup", utenteSignup).pipe(
       catchError(this.handleError)
     );
   }
@@ -34,7 +34,7 @@ export class AuthService {
 
       headers = headers.set('Authorization', 'Bearer ' + token);
 
-      return this.http.get(this.url + 'auth/isLogged', { headers, observe: 'response' }).pipe(
+      return this.http.get(this.url + 'auth/check', { headers, observe: 'response' }).pipe(
         map((response: HttpResponse<any>) => {
           return response.status === 200;
         }),

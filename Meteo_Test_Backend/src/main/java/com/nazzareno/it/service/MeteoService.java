@@ -1,10 +1,13 @@
 package com.nazzareno.it.service;
 
-import com.nazzareno.it.dto.MeteoDTO;
+
 
 import java.util.List;
 
+import com.nazzareno.it.dto.MeteoRegistrationDTO;
+import com.nazzareno.it.model.Meteo;
+
 public interface MeteoService {
-    MeteoDTO saveMeteo(MeteoDTO meteoDTO);
-    List<MeteoDTO> findByUserId(Long userId);
+    void saveMeteo(MeteoRegistrationDTO meteoDTO);
+    List<Meteo> findByUserId(Long userId);
 }

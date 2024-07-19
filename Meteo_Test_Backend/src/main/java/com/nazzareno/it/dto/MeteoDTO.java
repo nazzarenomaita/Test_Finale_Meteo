@@ -26,10 +26,10 @@ public class MeteoDTO {
     private LocalDate data;
 
     @NotNull
-    private BigDecimal tempmax;
+    private double tempmax;
 
     @NotNull
-    private BigDecimal tempmin;
+    private double tempmin;
     
     @NotNull
     private Long userId;
@@ -50,19 +50,19 @@ public class MeteoDTO {
 		this.data = data;
 	}
 
-	public BigDecimal getTempmax() {
+	public double getTempmax() {
 		return tempmax;
 	}
 
-	public void setTempmax(BigDecimal tempmax) {
+	public void setTempmax(double tempmax) {
 		this.tempmax = tempmax;
 	}
 
-	public BigDecimal getTempmin() {
+	public double getTempmin() {
 		return tempmin;
 	}
 
-	public void setTempmin(BigDecimal tempmin) {
+	public void setTempmin(double tempmin) {
 		this.tempmin = tempmin;
 	}
 

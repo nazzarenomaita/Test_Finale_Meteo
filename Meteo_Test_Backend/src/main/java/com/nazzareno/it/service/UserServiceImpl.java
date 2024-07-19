@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         user.setRuolo("USER");
         User savedUser = userDao.save(user);
 
-        return new UserDTO(savedUser);
+        return new UserDTO();
     }
 
     @Override
@@ -52,9 +52,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO findById(Long id) {
+    public User findById(Long id) {
         User user = userDao.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        return modelMapper.map(user, UserDTO.class);
+        return user;
     }
 
 	@Override

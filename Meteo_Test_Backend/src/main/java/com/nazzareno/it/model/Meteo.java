@@ -20,11 +20,11 @@ public class Meteo {
     @Column(nullable = false)
     private LocalDate data;
 
-    @Column(nullable = false, precision = 5, scale = 2)
-    private BigDecimal tempmax;
+    @Column(nullable = false)
+    private double tempmax;
 
-    @Column(nullable = false, precision = 5, scale = 2)
-    private BigDecimal tempmin;
+    @Column(nullable = false)
+    private double tempmin;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -54,19 +54,19 @@ public class Meteo {
 		this.data = data;
 	}
 
-	public BigDecimal getTempmax() {
+	public double getTempmax() {
 		return tempmax;
 	}
 
-	public void setTempmax(BigDecimal tempmax) {
+	public void setTempmax(double tempmax) {
 		this.tempmax = tempmax;
 	}
 
-	public BigDecimal getTempmin() {
+	public double getTempmin() {
 		return tempmin;
 	}
 
-	public void setTempmin(BigDecimal tempmin) {
+	public void setTempmin(double tempmin) {
 		this.tempmin = tempmin;
 	}
 

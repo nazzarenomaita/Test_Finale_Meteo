@@ -5,6 +5,8 @@ import com.nazzareno.it.dto.UserLoginDTO;
 import com.nazzareno.it.dto.UserLoginResponseDto;
 import com.nazzareno.it.dto.UserSignupDTO;
 import com.nazzareno.it.enums.TipoRuolo;
+import com.nazzareno.it.jwt.JWTTokenNeeded;
+import com.nazzareno.it.jwt.Secured;
 import com.nazzareno.it.model.User;
 import com.nazzareno.it.service.UserService;
 
@@ -12,6 +14,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -111,4 +115,13 @@ public class AuthController {
 	      return token;
 		
 	}
+    
+    @GET
+    @Path("/check")
+    @Produces(MediaType.APPLICATION_JSON)
+    @JWTTokenNeeded
+    @Secured(role = "USER")
+    public Response checkSession(@HeaderParam("Authorization") String token) {
+        return Response.ok().build();
+    }
 }

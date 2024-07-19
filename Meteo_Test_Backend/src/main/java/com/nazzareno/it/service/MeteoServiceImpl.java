@@ -1,35 +1,39 @@
 package com.nazzareno.it.service;
 
-import com.nazzareno.it.dao.MeteoDao;
-import com.nazzareno.it.dto.MeteoDTO;
-import com.nazzareno.it.model.Meteo;
-import com.nazzareno.it.service.MeteoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nazzareno.it.dao.MeteoDao;
+import com.nazzareno.it.dto.MeteoRegistrationDTO;
+import com.nazzareno.it.model.Meteo;
+
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class MeteoServiceImpl implements MeteoService {
+
     @Autowired
     private MeteoDao meteoDao;
 
-    
-    private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private UserService userService;
 
     @Override
-    public MeteoDTO saveMeteo(MeteoDTO meteoDTO) {
-        Meteo meteo = modelMapper.map(meteoDTO, Meteo.class);
-        meteo = meteoDao.save(meteo);
-
-        return modelMapper.map(meteo, MeteoDTO.class);
+    public void saveMeteo(MeteoRegistrationDTO meteoDTO) {
+        Meteo meteo = new Meteo();
+        meteo.setCittà(meteoDTO.getCitta());
+        meteo.setData(meteoDTO.getData());
+        meteo.setTempmax(meteoDTO.getTempmax());
+        meteo.setTempmin(meteoDTO.getTempmin());
+        meteo.setUser(userService.findById(meteoDTO.getUserId()));
+        meteoDao.save(meteo);
     }
 
     @Override
-    public List<MeteoDTO> findByUserId(Long userId) {
-        List<Meteo> meteos = meteoDao.findByUserId(userId);
-        return meteos.stream().map(meteo -> modelMapper.map(meteo, MeteoDTO.class)).collect(Collectors.toList());
+    public List<Meteo> findByUserId(Long userId) {
+        return meteoDao.findByUserId(userId);
     }
+
 }
